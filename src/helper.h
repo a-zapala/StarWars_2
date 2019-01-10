@@ -14,6 +14,7 @@ class StarShip {
 
 protected:
     ShieldPoints shieldPoints;
+    
 
 public:
     ShieldPoints getShield() const;
@@ -23,10 +24,12 @@ public:
     StarShip(ShieldPoints shieldPoints);
     
     virtual ~StarShip() = default;
+    
+    virtual NumberOfShips howManyUndestroyedUnits();
 
 private:
-    virtual void Attack(std::shared_ptr<StarShip> &ship) {};
-    virtual NumberOfShips howManyUndestroyedUnits();
+    virtual void maybeAttack(std::shared_ptr<StarShip> &ship) {};
+    
 };
 
 
@@ -44,7 +47,7 @@ public:
     ~Attacking() override = default;
 
 private:
-    void Attack(std::shared_ptr<StarShip> &ship) override;
+    void maybeAttack(std::shared_ptr<StarShip> &ship) override;
 };
 
 

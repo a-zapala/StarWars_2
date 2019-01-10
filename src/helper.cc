@@ -25,7 +25,7 @@ AttackPower Attacking::getAttackPower() const {
     return attackPower;
 }
 
-void Attacking::Attack(std::shared_ptr<StarShip> &ship) {
+void Attacking::maybeAttack(std::shared_ptr<StarShip> &ship) {
     ship->takeDamage(attackPower);
 }
 

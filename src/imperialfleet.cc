@@ -47,13 +47,11 @@ void Squadron::takeDamage(AttackPower damage) {
 
 NumberOfShips Squadron::howManyUndestroyedUnits() {
     NumberOfShips numberOfShips = 0;
-
+    
     for (auto &item : ships) {
-        if (item->getShield() > 0) {
-            numberOfShips++;
-        }
+        numberOfShips += item->howManyUndestroyedUnits();
     }
-
+    
     return numberOfShips;
 }
 

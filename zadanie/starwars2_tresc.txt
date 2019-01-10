@@ -17,7 +17,7 @@ Klasy Explorer, StarCruiser i XWing, w których używane są typy pomocnicze:
 * Speed będący typem reprezentującym prędkość,
 * AttackPower reprezentujący siłę ataku.
 
-Klasa Explorer przyjmuje w konstruktorze parametry shield typu ShieldPoints oraz
+Klasa Explorer przyjmuje w konstruktorze parametry shieldPoints typu ShieldPoints oraz
 speed typu Speed, a StarCruiser oraz XWing dodatkowo parametr power typu AttackPower.
 Klasa StarCruiser może przyjmować speed w zakresie od 99999 do 299795 włącznie,
 a klasy Explorer oraz XWing w zakresie od 299796 do 2997960 włącznie. Poprawność
@@ -46,7 +46,7 @@ pomocnicze:
 * AttackPower reprezentujący siłę ataku.
 
 Klasy DeathStar, ImperialDestroyer i TIEFighter przyjmują w konstruktorze
-parametry shield typu ShieldPoints oraz power typu AttackPower.
+parametry shieldPoints typu ShieldPoints oraz power typu AttackPower.
 
 Klasy DeathStar, ImperialDestroyer i TIEFighter mają metody publiczne:
 * ShieldPoints getShield() – zwraca wytrzymałość tarczy,

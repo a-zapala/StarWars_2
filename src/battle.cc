@@ -61,8 +61,8 @@ void Battle::fight() {
                 // here possibly we can make it smarter than casting every time we want to attack
                 std::shared_ptr<StarShip> iShip = std::static_pointer_cast<StarShip>(imperialShip);
                 std::shared_ptr<StarShip> rShip = std::static_pointer_cast<StarShip>(rebelShip);
-                imperialShip->Attack(rShip);
-                rebelShip->Attack(iShip);
+                imperialShip->maybeAttack(rShip);
+                rebelShip->maybeAttack(iShip);
             }
         }
     }
