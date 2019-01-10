@@ -12,13 +12,13 @@ Explorer::Explorer(ShieldPoints shieldPoints, Speed speed) : StarShip(shieldPoin
 
 StarCruiser::StarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower)
         : StarShip(shieldPoints), RebelStarShip(shieldPoints, speed), Attacking(shieldPoints, attackPower) {
-    assert(speed >=99999 && speed <= 299795);
+    assert(speed >= 99999 && speed <= 299795);
 }
 
 XWing::XWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower)
         : StarShip(shieldPoints), RebelStarShip(shieldPoints, speed), Attacking(shieldPoints, attackPower) {
     
-    assert(speed >=299796 && speed <= 2997960);
+    assert(speed >= 299796 && speed <= 2997960);
 }
 
 std::shared_ptr<RebelStarShip> createExplorer(ShieldPoints shieldPoints, Speed speed) {

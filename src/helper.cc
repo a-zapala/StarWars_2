@@ -11,15 +11,27 @@ void StarShip::takeDamage(AttackPower damage) {
 
 StarShip::StarShip(ShieldPoints shieldPoints) : shieldPoints(shieldPoints) {}
 
+NumberOfShips StarShip::howManyUndestroyedUnits() {
+    if (shieldPoints > 0) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+
 AttackPower Attacking::getAttackPower() const {
     return attackPower;
 }
 
-void Attacking::maybeAttack(std::shared_ptr<StarShip> &ship) {
-    if (shieldPoints > 0) {
-        ship->takeDamage(attackPower);
-    }
+void Attacking::Attack(std::shared_ptr<StarShip> &ship) {
+    ship->takeDamage(attackPower);
 }
 
 Attacking::Attacking(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
                                                                            attackPower(attackPower) {}
+
+bool DefaultSpaceTime::isItAttackTime(Time t) const{
+    return (t % 2 == 0 ||  t % 3 == 0) && (t % 5 != 0);
+}

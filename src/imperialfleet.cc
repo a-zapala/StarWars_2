@@ -45,6 +45,18 @@ void Squadron::takeDamage(AttackPower damage) {
     updateShieldAndAttackPower();
 }
 
+NumberOfShips Squadron::howManyUndestroyedUnits() {
+    NumberOfShips numberOfShips = 0;
+
+    for (auto &item : ships) {
+        if (item->getShield() > 0) {
+            numberOfShips++;
+        }
+    }
+
+    return numberOfShips;
+}
+
 std::shared_ptr<ImperialStarShip> createDeathStar(ShieldPoints shieldPoints, AttackPower attackPower) {
     return std::make_shared<DeatheStar>(shieldPoints, attackPower);
 }

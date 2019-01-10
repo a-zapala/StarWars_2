@@ -40,6 +40,8 @@ private:
     
     void updateShieldAndAttackPower();
 
+    NumberOfShips howManyUndestroyedUnits() override;
+
 public:
     Squadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships);
     

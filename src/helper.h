@@ -3,14 +3,14 @@
 
 #include <memory>
 
-class battle;
-
 using ShieldPoints = int;
 using AttackPower = int;
 using Speed = int;
+using NumberOfShips = size_t;
+using Time = size_t;
 
 class StarShip {
-    friend class battle;
+    friend class Battle;
 
 protected:
     ShieldPoints shieldPoints;
@@ -25,11 +25,13 @@ public:
     virtual ~StarShip() = default;
 
 private:
-    virtual void maybeAttack(std::shared_ptr<StarShip> &ship) {};
+    virtual void Attack(std::shared_ptr<StarShip> &ship) {};
+    virtual NumberOfShips howManyUndestroyedUnits();
 };
 
+
 class Attacking : public virtual StarShip {
-    friend class battle;
+    friend class Battle;
 
 protected:
     AttackPower attackPower;
@@ -42,7 +44,17 @@ public:
     ~Attacking() override = default;
 
 private:
-    void maybeAttack(std::shared_ptr<StarShip> &ship) override;
+    void Attack(std::shared_ptr<StarShip> &ship) override;
+};
+
+
+class SpaceTime{
+public:
+    virtual bool isItAttackTime(Time t) const = 0;
+};
+
+class DefaultSpaceTime: public SpaceTime{
+    bool isItAttackTime(Time t) const override;
 };
 
 
