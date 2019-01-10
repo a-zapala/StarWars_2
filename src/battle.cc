@@ -26,13 +26,13 @@ void Battle::tick(Time timeStep) {
     NumberOfShips rebelFleet = countRebelFleet(), imperialFleet = countImperialFleet();
 
     if(rebelFleet == 0 && imperialFleet == 0) {
-        std::cout << "DRAW\n" << std::endl;
+        std::cout << "DRAW\n";
     }
     else if (imperialFleet == 0) {
-        std::cout << "REBELION WON\n" << std::endl;
+        std::cout << "REBELLION WON\n";
     }
     else if (rebelFleet == 0) {
-        std::cout << "IMPERIUM WON\n" << std::endl;
+        std::cout << "IMPERIUM WON\n";
     }
     else {
 

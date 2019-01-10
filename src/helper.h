@@ -48,12 +48,12 @@ private:
 };
 
 
-class SpaceTime{
+class SpaceTime {
 public:
     virtual bool isItAttackTime(Time t) const = 0;
 };
 
-class DefaultSpaceTime: public SpaceTime{
+class DefaultSpaceTime: public SpaceTime {
     bool isItAttackTime(Time t) const override;
 };
 

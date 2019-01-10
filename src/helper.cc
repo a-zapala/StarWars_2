@@ -32,6 +32,6 @@ void Attacking::Attack(std::shared_ptr<StarShip> &ship) {
 Attacking::Attacking(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
                                                                            attackPower(attackPower) {}
 
-bool DefaultSpaceTime::isItAttackTime(Time t) const{
+bool DefaultSpaceTime::isItAttackTime(Time t) const {
     return (t % 2 == 0 ||  t % 3 == 0) && (t % 5 != 0);
 }
