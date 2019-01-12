@@ -34,10 +34,10 @@ public:
     ~XWing() override = default;
 };
 
-std::shared_ptr<RebelStarShip> createExplorer(ShieldPoints shieldPoints, Speed speed);
+std::shared_ptr<Explorer> createExplorer(ShieldPoints shieldPoints, Speed speed);
 
-std::shared_ptr<RebelStarShip> createXWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower);
+std::shared_ptr<XWing> createXWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower);
 
-std::shared_ptr<RebelStarShip> createStarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower);
+std::shared_ptr<StarCruiser> createStarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower);
 
 #endif //STARWARS_2_REBELFLEET_H

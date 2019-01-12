@@ -60,7 +60,7 @@ void DefaultSpaceTime::tick(Time t) {
 }
 
 
-// for tests
+// AttackTime for tests
 bool PastAttackTime::isItAttackTime(Time t) const {
     int x = sqrt(t);
     return x * x == t;

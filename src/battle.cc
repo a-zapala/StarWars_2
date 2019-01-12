@@ -25,8 +25,6 @@ NumberOfShips Battle::countImperialFleet() const {
 void Battle::tick(Time timeStep) {
     NumberOfShips rebelFleet = countRebelFleet(), imperialFleet = countImperialFleet();
 
-    //std::cout << "jolo" << std::endl;
-
     if(rebelFleet == 0 && imperialFleet == 0) {
         std::cout << "DRAW\n";
     }
@@ -38,7 +36,6 @@ void Battle::tick(Time timeStep) {
     }
     else {
         if (spaceTime->isItAttackTime()) {
-            //std::cout << "attack" << std::endl;
             fight();
         }
     }

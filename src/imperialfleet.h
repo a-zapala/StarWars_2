@@ -48,15 +48,15 @@ public:
     Squadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships);
 };
 
-std::shared_ptr<ImperialStarShip> createDeathStar(ShieldPoints shieldPoints, AttackPower attackPower);
+std::shared_ptr<DeathStar> createDeathStar(ShieldPoints shieldPoints, AttackPower attackPower);
 
-std::shared_ptr<ImperialStarShip> createTIEFighter(ShieldPoints shieldPoints, AttackPower attackPower);
+std::shared_ptr<TIEFighter> createTIEFighter(ShieldPoints shieldPoints, AttackPower attackPower);
 
-std::shared_ptr<ImperialStarShip> createImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower);
+std::shared_ptr<ImperialDestroyer> createImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower);
 
-std::shared_ptr<ImperialStarShip> createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships);
+std::shared_ptr<Squadron> createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships);
 
-std::shared_ptr<ImperialStarShip> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships);
+std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships);
 
 
 #endif //STARWARS_2_IMPERIALFLEET_H

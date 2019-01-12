@@ -8,7 +8,9 @@ Speed RebelStarShip::getSpeed() const {
 RebelStarShip::RebelStarShip(ShieldPoints shieldPoints, Speed speed) : StarShip(shieldPoints), speed(speed) {}
 
 Explorer::Explorer(ShieldPoints shieldPoints, Speed speed) : StarShip(shieldPoints),
-                                                             RebelStarShip(shieldPoints, speed) {}
+                                                             RebelStarShip(shieldPoints, speed) {
+    assert(speed >= 299796 && speed <= 2997960);
+}
 
 StarCruiser::StarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower)
         : StarShip(shieldPoints), RebelStarShip(shieldPoints, speed), Attacking(shieldPoints, attackPower) {
@@ -21,14 +23,14 @@ XWing::XWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower)
     assert(speed >= 299796 && speed <= 2997960);
 }
 
-std::shared_ptr<RebelStarShip> createExplorer(ShieldPoints shieldPoints, Speed speed) {
+std::shared_ptr<Explorer> createExplorer(ShieldPoints shieldPoints, Speed speed) {
     return std::make_shared<Explorer>(shieldPoints,speed);
 }
 
-std::shared_ptr<RebelStarShip> createXWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower) {
+std::shared_ptr<XWing> createXWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower) {
     return std::make_shared<XWing>(shieldPoints,speed,attackPower);
 }
 
-std::shared_ptr<RebelStarShip> createStarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower) {
+std::shared_ptr<StarCruiser> createStarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower) {
     return std::make_shared<StarCruiser>(shieldPoints,speed,attackPower);
 }

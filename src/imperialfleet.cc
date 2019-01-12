@@ -55,23 +55,23 @@ NumberOfShips Squadron::howManyUndestroyedUnits() {
     return numberOfShips;
 }
 
-std::shared_ptr<ImperialStarShip> createDeathStar(ShieldPoints shieldPoints, AttackPower attackPower) {
+std::shared_ptr<DeathStar> createDeathStar(ShieldPoints shieldPoints, AttackPower attackPower) {
     return std::make_shared<DeathStar>(shieldPoints, attackPower);
 }
 
-std::shared_ptr<ImperialStarShip> createTIEFighter(ShieldPoints shieldPoints, AttackPower attackPower) {
+std::shared_ptr<TIEFighter> createTIEFighter(ShieldPoints shieldPoints, AttackPower attackPower) {
     return std::make_shared<TIEFighter>(shieldPoints, attackPower);
 }
 
-std::shared_ptr<ImperialStarShip> createImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower) {
+std::shared_ptr<ImperialDestroyer> createImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower) {
     return std::make_shared<ImperialDestroyer>(shieldPoints, attackPower);
 }
 
-std::shared_ptr<ImperialStarShip> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships) {
+std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships) {
     return std::make_shared<Squadron>(ships);
 }
 
-std::shared_ptr<ImperialStarShip>
+std::shared_ptr<Squadron>
 createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships) {
     return std::make_shared<Squadron>(ships);
 }

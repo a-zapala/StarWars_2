@@ -20,7 +20,7 @@ int main() {
     //get tests
     assert(xwing->getShield() == 100);
     assert(xwing->getSpeed() == 300000);
-    //assert(xwing->getAttackPower() == 50);
+    assert(xwing->getAttackPower() == 50);
     //assert(explorer->getAttackPower() == 23); //expected error
     assert(fighter->getAttackPower() == 9);
     assert(fighter->getShield() == 50);
@@ -277,4 +277,165 @@ int main() {
 
     // const_strarships_end
 
+
+    //old tests, new attackTime
+
+    // just_one_faction
+
+    // just rebelships
+    auto battleBuilder = SpaceBattle::Builder();
+    battleBuilder
+            .startTime(2)
+            .maxTime(23)
+            .ship(createStarCruiser(100, 100000, 10))
+            .ship(createExplorer(10, 1000000))
+            .ship(createXWing(10, 1000000, 1));
+
+    auto battle_just_rebel2 = battleBuilder.build();
+
+    cout << endl << "Just rebelships correct answer: " << "REBELLION WON" << endl;
+
+    battle_just_rebel2.tick(1); // "REBELLION WON\n"
+
+
+    // just imperialships
+    battleBuilder = SpaceBattle::Builder();
+
+    battleBuilder
+            .startTime(2)
+            .maxTime(23)
+            .ship(createDeathStar(1000, 10000))
+            .ship(createImperialDestroyer(200, 15));
+
+    auto battle_just_imperial2 = battleBuilder.build();
+
+    cout << endl << "Just imperialships correct answer: " << "IMPERIUM WON" << endl;
+
+    battle_just_imperial2.tick(1); // "IMPERIUM WON\n"
+
+
+    // just_one_faction_end
+
+    // empty_battle
+
+    battleBuilder = SpaceBattle::Builder();
+    battleBuilder.startTime(4).maxTime(45);
+
+    auto battle_empty2 = battleBuilder.build();
+
+    cout << endl << "Empty battle correct answer: " << "DRAW" << endl;
+
+    battle_empty2.tick(1000000); // "DRAW\n"
+
+    // empty_battle_end
+
+    // normal battles
+
+    //battle5
+
+    battleBuilder = SpaceBattle::Builder();
+
+    battleBuilder.startTime(6).maxTime(36)
+            .ship(createXWing(35, 300000, 15))
+            .ship(createXWing(35, 300000, 15))
+            .ship(createExplorer(75, 400000))
+            .ship(createStarCruiser(62, 100000, 41))
+            .ship(createDeathStar(90, 30))
+            .ship(createTIEFighter(15, 2))
+            .ship(createTIEFighter(15, 2))
+            .ship(createImperialDestroyer(35, 10));
+
+    auto battle5 = battleBuilder.build();
+
+    assert(battle5.countRebelFleet() == 4);
+    assert(battle5.countImperialFleet() == 4);
+
+    battle5.tick(9); //6
+    assert(battle5.countRebelFleet() == 2);
+    assert(battle5.countImperialFleet() == 1);
+    //status: 0 0 19 35 0 0 0 22
+
+    battle5.tick(2); //15
+    assert(battle5.countRebelFleet() == 2);
+    assert(battle5.countImperialFleet() == 1);
+
+    battle5.tick(5); //17
+    assert(battle5.countRebelFleet() == 2);
+    assert(battle5.countImperialFleet() == 1);
+
+    battle5.tick(1); //22
+    assert(battle5.countRebelFleet() == 1);
+    assert(battle5.countImperialFleet() == 0);
+    //status: 0 0 0 5 0 0 0 0
+
+    cout << endl << "Battle5 correct answer: " << "REBELLION WON" << endl;
+
+    battle5.tick(1); // "REBELLION WON\n"
+
+    // battle6
+
+    battleBuilder = SpaceBattle::Builder();
+
+    battleBuilder.startTime(5).maxTime(10)
+            .ship(createXWing(35, 300000, 15))
+            .ship(createXWing(45, 300000, 10))
+            .ship(createTIEFighter(37, 20))
+            .ship(createTIEFighter(42, 7));
+
+    auto battle6 = battleBuilder.build();
+
+    assert(battle6.countRebelFleet() == 2);
+    assert(battle6.countImperialFleet() == 2);
+
+    battle6.tick(6); //5
+    assert(battle6.countRebelFleet() == 2);
+    assert(battle6.countImperialFleet() == 2);
+
+    battle6.tick(2); //0
+    assert(battle6.countRebelFleet() == 2);
+    assert(battle6.countImperialFleet() == 2);
+
+    battle6.tick(1); //2
+    assert(battle6.countRebelFleet() == 2);
+    assert(battle6.countImperialFleet() == 2);
+    // status: 12 8 18 17
+
+    battle6.tick(11); //3
+    assert(battle6.countRebelFleet() == 1);
+    assert(battle6.countImperialFleet() == 1);
+    // status: 0 0 11 7
+
+    battle6.tick(1); //4
+    assert(battle6.countRebelFleet() == 1);
+    assert(battle6.countImperialFleet() == 0);
+    // status: 0 0 4 0
+
+    cout << endl << "Battle6 correct answer: " << "REBELLION WON" << endl;
+
+    battle6.tick(0); // "REBELLION WON\n"
+
+    //battle7
+
+    battleBuilder = SpaceBattle::Builder();
+
+    battleBuilder.startTime(1).maxTime(4)
+            .ship(createStarCruiser(123, 100000, 80))
+            .ship(createDeathStar(100, 75));
+
+    auto battle7 = battleBuilder.build();
+
+    battle7.tick(3); //1
+    assert(battle7.countRebelFleet() == 1);
+    assert(battle7.countImperialFleet() == 1);
+
+    battle7.tick(3); //4
+    assert(battle7.countRebelFleet() == 1);
+    assert(battle7.countImperialFleet() == 1);
+
+    battle7.tick(2); //2
+    assert(battle7.countRebelFleet() == 0);
+    assert(battle7.countImperialFleet() == 0);
+
+    cout << endl << "Battle7 correct answer: " << "DRAW" << endl;
+    battle7.tick(0); // "DRAW\n"
 }
