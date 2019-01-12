@@ -12,11 +12,11 @@ public:
     ~ImperialStarShip() override = default;
 };
 
-class DeatheStar : public ImperialStarShip {
+class DeathStar : public ImperialStarShip {
 public:
-    DeatheStar(ShieldPoints shieldPoints, AttackPower attackPower);
+    DeathStar(ShieldPoints shieldPoints, AttackPower attackPower);
     
-    ~DeatheStar() override = default;
+    ~DeathStar() override = default;
 };
 
 class ImperialDestroyer : public ImperialStarShip {

@@ -3,7 +3,7 @@
 ImperialStarShip::ImperialStarShip(ShieldPoints shieldPoints, AttackPower attackPower)
         : StarShip(shieldPoints), Attacking(shieldPoints, attackPower) {}
 
-DeatheStar::DeatheStar(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
+DeathStar::DeathStar(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
                                                                              ImperialStarShip(shieldPoints,
                                                                                               attackPower) {}
 
@@ -56,7 +56,7 @@ NumberOfShips Squadron::howManyUndestroyedUnits() {
 }
 
 std::shared_ptr<ImperialStarShip> createDeathStar(ShieldPoints shieldPoints, AttackPower attackPower) {
-    return std::make_shared<DeatheStar>(shieldPoints, attackPower);
+    return std::make_shared<DeathStar>(shieldPoints, attackPower);
 }
 
 std::shared_ptr<ImperialStarShip> createTIEFighter(ShieldPoints shieldPoints, AttackPower attackPower) {

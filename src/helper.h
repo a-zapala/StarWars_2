@@ -14,7 +14,6 @@ class StarShip {
 
 protected:
     ShieldPoints shieldPoints;
-    
 
 public:
     ShieldPoints getShield() const;
@@ -24,12 +23,12 @@ public:
     StarShip(ShieldPoints shieldPoints);
     
     virtual ~StarShip() = default;
-    
+
     virtual NumberOfShips howManyUndestroyedUnits();
 
 private:
-    virtual void maybeAttack(std::shared_ptr<StarShip> &ship) {};
-    
+    virtual void maybeAttack(std::shared_ptr<StarShip> ship) {};
+
 };
 
 
@@ -47,17 +46,50 @@ public:
     ~Attacking() override = default;
 
 private:
-    void maybeAttack(std::shared_ptr<StarShip> &ship) override;
+    void maybeAttack(std::shared_ptr<StarShip> ship) override;
 };
 
 
-class SpaceTime {
+class AttackTime {
 public:
     virtual bool isItAttackTime(Time t) const = 0;
 };
 
-class DefaultSpaceTime: public SpaceTime {
+class DefaultAttackTime: public AttackTime {
     bool isItAttackTime(Time t) const override;
+};
+
+class SpaceTime {
+public:
+    virtual void tick(Time t) = 0;
+
+    SpaceTime(Time t0, Time t1);
+
+    SpaceTime(Time t0, Time t1, std::shared_ptr<AttackTime> attackTime);
+
+    virtual ~SpaceTime() = default;
+
+    bool isItAttackTime();
+
+    void setAttackTime(std::shared_ptr<AttackTime> newAttackTime);
+
+protected:
+    Time t0;
+    Time t1;
+    Time currentTime;
+    std::shared_ptr<AttackTime> attackTime;
+};
+
+class DefaultSpaceTime: public SpaceTime {
+public:
+    void tick(Time t) override;
+
+    DefaultSpaceTime(Time t0, Time t1) : SpaceTime(t0, t1) {}
+
+    DefaultSpaceTime(Time t0, Time t1, std::shared_ptr<AttackTime> attackTime) :
+            SpaceTime(t0, t1, attackTime) {}
+
+    ~DefaultSpaceTime() override = default;
 };
 
 

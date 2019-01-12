@@ -1,6 +1,5 @@
 #include "battle.h"
 
-
 NumberOfShips Battle::countRebelFleet() const {
     NumberOfShips numberOfShips = 0;
 
@@ -35,34 +34,35 @@ void Battle::tick(Time timeStep) {
         std::cout << "IMPERIUM WON\n";
     }
     else {
-
-        if (spaceTime->isItAttackTime(currentTime)) {
+        if (spaceTime->isItAttackTime()) {
             fight();
         }
-
-        currentTime += timeStep;
-        currentTime %= (t1 + 1);
     }
+
+    spaceTime->tick(timeStep);
 }
 
 Battle::Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
                const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
-               Time t0, Time t1, const std::shared_ptr<SpaceTime> &sTime):
-               imperialShips(imperialShips),
-               rebelShips(rebelShips),
-               t0(t0), t1(t1), spaceTime(sTime) {
-    currentTime = t0;
-}
+               Time t0, Time t1) :
+        imperialShips(imperialShips),
+        rebelShips(rebelShips),
+        spaceTime(std::make_shared<DefaultSpaceTime>(t0, t1)) {}
+
+
+Battle::Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
+               const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
+               const std::shared_ptr<SpaceTime> &sTime) :
+        imperialShips(imperialShips),
+        rebelShips(rebelShips),
+        spaceTime(sTime) {}
 
 void Battle::fight() {
     for (auto &imperialShip: imperialShips) {
         for (auto &rebelShip: rebelShips) {
             if (imperialShip->getShield() > 0 && rebelShip->getShield() > 0) {
-                // here possibly we can make it smarter than casting every time we want to attack
-                std::shared_ptr<StarShip> iShip = std::static_pointer_cast<StarShip>(imperialShip);
-                std::shared_ptr<StarShip> rShip = std::static_pointer_cast<StarShip>(rebelShip);
-                imperialShip->maybeAttack(rShip);
-                rebelShip->maybeAttack(iShip);
+                imperialShip->maybeAttack(rebelShip);
+                rebelShip->maybeAttack(imperialShip);
             }
         }
     }
@@ -78,23 +78,26 @@ SpaceBattle::Builder& SpaceBattle::Builder::maxTime(Time t) {
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::spaceTimeKind(std::shared_ptr<SpaceTime> &sTime) {
+SpaceBattle::Builder& SpaceBattle::Builder::spaceTimeKind(std::shared_ptr<SpaceTime> sTime) {
     spaceTime = sTime;
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<ImperialStarShip> &imperialShip) {
+SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<ImperialStarShip> imperialShip) {
     imperialShips.push_back(imperialShip);
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<RebelStarShip> &rebelShip) {
+SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<RebelStarShip> rebelShip) {
     rebelShips.push_back(rebelShip);
     return *this;
 }
 
 Battle SpaceBattle::Builder::build() {
-    return Battle(imperialShips, rebelShips, t0, t1, spaceTime);
+    if (spaceTime == nullptr) {
+        return Battle(imperialShips, rebelShips, std::make_shared<DefaultSpaceTime>(t0, t1));
+    }
+    else {
+        return Battle(imperialShips, rebelShips, spaceTime);
+    }
 }
-
-SpaceBattle::Builder::Builder(): spaceTime(std::make_shared<DefaultSpaceTime>()) {}

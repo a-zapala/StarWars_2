@@ -15,15 +15,16 @@ public:
 
     Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
            const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
-           Time t0, Time t1, const std::shared_ptr<SpaceTime> &sTime);
+           Time t0, Time t1);
+
+    Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
+           const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
+           const std::shared_ptr<SpaceTime> &sTime);
 
 private:
     std::vector<std::shared_ptr<ImperialStarShip>> imperialShips;
     std::vector<std::shared_ptr<RebelStarShip>> rebelShips;
-    Time t0;
-    Time t1;
     std::shared_ptr<SpaceTime> spaceTime;
-    Time currentTime;
 
     void fight();
 };
@@ -34,12 +35,10 @@ namespace SpaceBattle {
     public:
         Builder& startTime(Time t);
         Builder& maxTime(Time t);
-        Builder& spaceTimeKind(std::shared_ptr<SpaceTime> &sTime);
-        Builder& ship(std::shared_ptr<ImperialStarShip> &imperialShip);
-        Builder& ship(std::shared_ptr<RebelStarShip> &rebelShip);
+        Builder& spaceTimeKind(std::shared_ptr<SpaceTime> sTime);
+        Builder& ship(std::shared_ptr<ImperialStarShip> imperialShip);
+        Builder& ship(std::shared_ptr<RebelStarShip> rebelShip);
         Battle build();
-
-        Builder();
 
     private:
         std::vector<std::shared_ptr<ImperialStarShip>> imperialShips;
@@ -48,7 +47,6 @@ namespace SpaceBattle {
         Time t1 = 1;
         std::shared_ptr<SpaceTime> spaceTime;
     };
-
 }
 
 #endif //STARWARS_2_BATTLE_H
