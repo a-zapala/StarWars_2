@@ -4,6 +4,7 @@
 #include "helper.h"
 #include <cassert>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -350,23 +351,21 @@ int main() {
     assert(battle5.countRebelFleet() == 4);
     assert(battle5.countImperialFleet() == 4);
 
-    battle5.tick(9); //6
-    assert(battle5.countRebelFleet() == 2);
-    assert(battle5.countImperialFleet() == 1);
-    //status: 0 0 19 35 0 0 0 22
-
-    battle5.tick(2); //15
+    battle5.tick(9);
     assert(battle5.countRebelFleet() == 2);
     assert(battle5.countImperialFleet() == 1);
 
-    battle5.tick(5); //17
+    battle5.tick(2);
     assert(battle5.countRebelFleet() == 2);
     assert(battle5.countImperialFleet() == 1);
 
-    battle5.tick(1); //22
+    battle5.tick(5);
+    assert(battle5.countRebelFleet() == 2);
+    assert(battle5.countImperialFleet() == 1);
+
+    battle5.tick(1);
     assert(battle5.countRebelFleet() == 1);
     assert(battle5.countImperialFleet() == 0);
-    //status: 0 0 0 5 0 0 0 0
 
     cout << endl << "Battle5 correct answer: " << "REBELLION WON" << endl;
 
@@ -438,4 +437,89 @@ int main() {
 
     cout << endl << "Battle7 correct answer: " << "DRAW" << endl;
     battle7.tick(0); // "DRAW\n"
+
+    //battle8
+
+    battleBuilder = SpaceBattle::Builder();
+
+    battleBuilder.startTime(6).maxTime(36)
+            .ship(createXWing(35, 300000, 15))
+            .ship(createXWing(35, 300000, 15))
+            .ship(createExplorer(75, 400000))
+            .ship(createStarCruiser(62, 100000, 21))
+            .ship(createDeathStar(90, 30))
+            .ship(createSquadron({createTIEFighter(15, 3), createTIEFighter(15, 3)}))
+            .ship(createImperialDestroyer(35, 10));
+
+    auto battle8 = battleBuilder.build();
+
+    assert(battle8.countRebelFleet() == 4);
+    assert(battle8.countImperialFleet() == 4);
+
+    battle8.tick(9); //6
+    assert(battle8.countRebelFleet() == 2);
+    assert(battle8.countImperialFleet() == 1);
+    //status: 0 0 35 22 39 0 0 0
+
+    battle8.tick(2); //15
+    assert(battle8.countRebelFleet() == 2);
+    assert(battle8.countImperialFleet() == 1);
+
+    battle8.tick(5); //17
+    assert(battle8.countRebelFleet() == 2);
+    assert(battle8.countImperialFleet() == 1);
+
+    battle8.tick(2); //22
+    assert(battle8.countRebelFleet() == 1);
+    assert(battle8.countImperialFleet() == 1);
+    //status: 0 0 5 0 18 0 0 0
+
+    battle8.tick(1); //24
+    assert(battle8.countRebelFleet() == 0);
+    assert(battle8.countImperialFleet() == 1);
+    //status: 0 0 0 0 18 0 0 0
+
+    cout << endl << "Battle8 correct answer: " << "IMPERIUM WON" << endl;
+
+    battle8.tick(1); // "IMPERIUM WON\n"
+
+    //battle9
+
+    battleBuilder = SpaceBattle::Builder();
+
+    battleBuilder.startTime(6).maxTime(36)
+            .ship(createXWing(35, 300000, 15))
+            .ship(createXWing(35, 300000, 15))
+            .ship(createExplorer(75, 400000))
+            .ship(createStarCruiser(85, 100000, 41))
+            .ship(createSquadron({createDeathStar(90, 30), createTIEFighter(16, 5)}))
+            .ship(createSquadron(std::vector<std::shared_ptr<ImperialStarShip>>({createTIEFighter(15, 5),
+                                                                                 createImperialDestroyer(42, 10)})));
+
+    auto battle9 = battleBuilder.build();
+
+    assert(battle9.countRebelFleet() == 4);
+    assert(battle9.countImperialFleet() == 4);
+
+    battle9.tick(9); //6
+    assert(battle9.countRebelFleet() == 2);
+    assert(battle9.countImperialFleet() == 2);
+    //status: 0 0 30 20 19 0 0 1
+
+    battle9.tick(2); //15
+    assert(battle9.countRebelFleet() == 2);
+    assert(battle9.countImperialFleet() == 2);
+
+    battle9.tick(5); //17
+    assert(battle9.countRebelFleet() == 2);
+    assert(battle9.countImperialFleet() == 2);
+
+    battle9.tick(1); //22
+    assert(battle9.countRebelFleet() == 0);
+    assert(battle9.countImperialFleet() == 0);
+    //status: 0 0 0 0 0 0 0 0
+
+    cout << endl << "Battle9 correct answer: " << "DRAW" << endl;
+
+    battle9.tick(1); // "DRAW\n"
 }
