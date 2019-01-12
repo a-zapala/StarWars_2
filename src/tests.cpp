@@ -25,7 +25,7 @@ int main() {
     assert(fighter->getAttackPower() == 9);
     assert(fighter->getShield() == 50);
 
-    auto spaceTime = std::make_shared<PastSpaceTime>(1, 23, std::make_shared<PastAttackTime>());
+    auto spaceTime = std::make_shared<DefaultSpaceTime>(1, 23, std::make_shared<PastAttackTime>());
 
     auto battle = SpaceBattle::Builder()
             .startTime(1)
@@ -69,7 +69,7 @@ int main() {
 //        return currentTime;
 //    }
 
-//    auto spaceTime2 = std::make_shared<PastSpaceTime>(4, 45, std::make_shared<PastAttackTime>());
+//    auto spaceTime2 = std::make_shared<DefaultSpaceTime>(4, 45, std::make_shared<PastAttackTime>());
 //
 //    auto battle_time = SpaceBattle::Builder().spaceTimeKind(spaceTime2).build();
 //
@@ -100,7 +100,7 @@ int main() {
             .ship(cruiser)
             .ship(explorer)
             .ship(xwing)
-            .spaceTimeKind(std::make_shared<PastSpaceTime>(2, 23, std::make_shared<PastAttackTime>()))
+            .spaceTimeKind(std::make_shared<DefaultSpaceTime>(2, 23, std::make_shared<PastAttackTime>()))
             .build();
 
     cout << endl << "Just rebelships correct answer: " << "REBELLION WON" << endl;
@@ -155,7 +155,7 @@ int main() {
             .ship(fighter22)
             .ship(destroyer2)
             .ship(cruiser2)
-            .spaceTimeKind(std::make_shared<PastSpaceTime>(6, 36, std::make_shared<PastAttackTime>()))
+            .spaceTimeKind(std::make_shared<DefaultSpaceTime>(6, 36, std::make_shared<PastAttackTime>()))
             .build();
 
     assert(battle2.countRebelFleet() == 4);
@@ -196,7 +196,7 @@ int main() {
             .ship(xwing32)
             .ship(xwing31)
             .ship(fighter32)
-            .spaceTimeKind(std::make_shared<PastSpaceTime>(3, 10, std::make_shared<PastAttackTime>()))
+            .spaceTimeKind(std::make_shared<DefaultSpaceTime>(3, 10, std::make_shared<PastAttackTime>()))
             .build();
 
     assert(battle3.countRebelFleet() == 2);
@@ -240,7 +240,7 @@ int main() {
             .ship(deathStar4)
             .ship(xwing41)
             .ship(xwing42)
-            .spaceTimeKind(std::make_shared<PastSpaceTime>(2, 4, std::make_shared<PastAttackTime>()))
+            .spaceTimeKind(std::make_shared<DefaultSpaceTime>(2, 4, std::make_shared<PastAttackTime>()))
             .build();
 
     battle4.tick(2); //2

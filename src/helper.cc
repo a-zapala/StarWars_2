@@ -65,8 +65,3 @@ bool PastAttackTime::isItAttackTime(Time t) const {
     int x = sqrt(t);
     return x * x == t;
 }
-
-void PastSpaceTime::tick(Time t) {
-    currentTime += t;
-    currentTime %= (t1 + 1);
-}

@@ -98,17 +98,6 @@ class PastAttackTime: public AttackTime {
     bool isItAttackTime(Time t) const override;
 };
 
-class PastSpaceTime: public SpaceTime {
-public:
-    void tick(Time t) override;
-
-    PastSpaceTime(Time t0, Time t1) : SpaceTime(t0, t1) {}
-
-    PastSpaceTime(Time t0, Time t1, std::shared_ptr<AttackTime> attackTime) :
-            SpaceTime(t0, t1, attackTime) {}
-
-    ~PastSpaceTime() override = default;
-};
 
 
 #endif //STARWARS_2_HELPER_H
