@@ -1,4 +1,4 @@
-#include <algorithm>
+#include <cmath>
 #include "helper.h"
 
 ShieldPoints StarShip::getShield() const {
@@ -55,6 +55,18 @@ void SpaceTime::setAttackTime(std::shared_ptr<AttackTime> newAttackTime){
 }
 
 void DefaultSpaceTime::tick(Time t) {
+    currentTime += t;
+    currentTime %= (t1 + 1);
+}
+
+
+// for tests
+bool PastAttackTime::isItAttackTime(Time t) const {
+    int x = sqrt(t);
+    return x * x == t;
+}
+
+void PastSpaceTime::tick(Time t) {
     currentTime += t;
     currentTime %= (t1 + 1);
 }

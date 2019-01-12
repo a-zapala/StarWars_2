@@ -1,4 +1,5 @@
 #include "battle.h"
+#include <cassert>
 
 NumberOfShips Battle::countRebelFleet() const {
     NumberOfShips numberOfShips = 0;
@@ -24,6 +25,8 @@ NumberOfShips Battle::countImperialFleet() const {
 void Battle::tick(Time timeStep) {
     NumberOfShips rebelFleet = countRebelFleet(), imperialFleet = countImperialFleet();
 
+    //std::cout << "jolo" << std::endl;
+
     if(rebelFleet == 0 && imperialFleet == 0) {
         std::cout << "DRAW\n";
     }
@@ -35,6 +38,7 @@ void Battle::tick(Time timeStep) {
     }
     else {
         if (spaceTime->isItAttackTime()) {
+            //std::cout << "attack" << std::endl;
             fight();
         }
     }
@@ -69,11 +73,13 @@ void Battle::fight() {
 }
 
 SpaceBattle::Builder& SpaceBattle::Builder::startTime(Time t) {
+    assert(t >= 0);
     t0 = t;
     return *this;
 }
 
 SpaceBattle::Builder& SpaceBattle::Builder::maxTime(Time t) {
+    assert(t >= 0);
     t1 = t;
     return *this;
 }
@@ -95,6 +101,7 @@ SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<RebelStarShip> 
 
 Battle SpaceBattle::Builder::build() {
     if (spaceTime == nullptr) {
+        assert(t0 <= t1);
         return Battle(imperialShips, rebelShips, std::make_shared<DefaultSpaceTime>(t0, t1));
     }
     else {
