@@ -56,7 +56,7 @@ std::shared_ptr<ImperialDestroyer> createImperialDestroyer(ShieldPoints shieldPo
 
 std::shared_ptr<Squadron> createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarship>> &ships);
 
-//std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships);
+std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarship>> &ships);
 
 
 #endif //STARWARS_2_IMPERIALFLEET_H

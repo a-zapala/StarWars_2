@@ -67,9 +67,9 @@ std::shared_ptr<ImperialDestroyer> createImperialDestroyer(ShieldPoints shieldPo
     return std::make_shared<ImperialDestroyer>(shieldPoints, attackPower);
 }
 
-//std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships) {
-//    return std::make_shared<Squadron>(ships);
-//}
+std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarship>> &ships) {
+    return std::make_shared<Squadron>(ships);
+}
 
 std::shared_ptr<Squadron>
 createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarship>> &ships) {
