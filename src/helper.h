@@ -7,7 +7,7 @@ using ShieldPoints = int;
 using AttackPower = int;
 using Speed = int;
 using NumberOfShips = size_t;
-using Time = size_t;
+using Time = unsigned int;
 
 class StarShip {
     friend class Battle;
