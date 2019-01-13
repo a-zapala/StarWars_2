@@ -54,6 +54,22 @@ void SpaceTime::setAttackTime(std::shared_ptr<AttackTime> newAttackTime){
     attackTime = newAttackTime;
 }
 
+Time SpaceTime::getT0() const {
+    return t0;
+}
+
+Time SpaceTime::getT1() const {
+    return t1;
+}
+
+Time SpaceTime::getCurrentTime() const {
+    return currentTime;
+}
+
+const std::shared_ptr<AttackTime> &SpaceTime::getAttackTime() const {
+    return attackTime;
+}
+
 void DefaultSpaceTime::tick(Time t) {
     currentTime += t;
     currentTime %= (t1 + 1);

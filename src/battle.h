@@ -13,13 +13,15 @@ public:
     NumberOfShips countImperialFleet() const;
     void tick(Time timeStep);
 
+    const std::shared_ptr<SpaceTime> &getSpaceTime() const;
+
     Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
            const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
            Time t0, Time t1);
 
     Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
            const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
-           const std::shared_ptr<SpaceTime> sTime);
+           std::shared_ptr<SpaceTime> sTime);
 
 private:
     std::vector<std::shared_ptr<ImperialStarShip>> imperialShips;

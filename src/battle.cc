@@ -43,6 +43,10 @@ void Battle::tick(Time timeStep) {
     spaceTime->tick(timeStep);
 }
 
+const std::shared_ptr<SpaceTime> &Battle::getSpaceTime() const {
+    return spaceTime;
+}
+
 Battle::Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
                const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
                Time t0, Time t1) :

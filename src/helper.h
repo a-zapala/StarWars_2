@@ -73,6 +73,14 @@ public:
 
     void setAttackTime(std::shared_ptr<AttackTime> newAttackTime);
 
+    Time getT0() const;
+
+    Time getT1() const;
+
+    Time getCurrentTime() const;
+
+    const std::shared_ptr<AttackTime> &getAttackTime() const;
+
 protected:
     Time t0;
     Time t1;
