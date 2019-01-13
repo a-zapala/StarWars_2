@@ -27,7 +27,7 @@ public:
     virtual NumberOfShips howManyUndestroyedUnits();
 
 private:
-    virtual void maybeAttack(std::shared_ptr<StarShip> ship) {};
+    virtual void maybeAttack(std::shared_ptr<StarShip> ship);
 
 };
 
@@ -86,6 +86,7 @@ protected:
     Time t1;
     Time currentTime;
     std::shared_ptr<AttackTime> attackTime;
+
 };
 
 class DefaultSpaceTime: public SpaceTime {

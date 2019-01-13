@@ -20,6 +20,9 @@ NumberOfShips StarShip::howManyUndestroyedUnits() {
     }
 }
 
+void StarShip::maybeAttack(std::shared_ptr<StarShip> ship) {
+    ship->takeDamage(0);
+}
 
 AttackPower Attacking::getAttackPower() const {
     return attackPower;
@@ -38,13 +41,13 @@ bool DefaultAttackTime::isItAttackTime(Time t) const {
 
 SpaceTime::SpaceTime(Time t0, Time t1) : t0(t0),
                                          t1(t1),
-                                         attackTime(std::make_shared<DefaultAttackTime>()),
-                                         currentTime(t0) {}
+                                         currentTime(t0),
+                                         attackTime(std::make_shared<DefaultAttackTime>()){}
 
 SpaceTime::SpaceTime(Time t0, Time t1, std::shared_ptr<AttackTime> attackTime) : t0(t0),
                                                                                  t1(t1),
-                                                                                 attackTime(attackTime),
-                                                                                 currentTime(t0) {}
+                                                                                 currentTime(t0),
+                                                                                 attackTime(attackTime){}
 
 bool SpaceTime::isItAttackTime() {
     return attackTime->isItAttackTime(currentTime);

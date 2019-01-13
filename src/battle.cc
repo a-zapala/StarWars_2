@@ -74,13 +74,11 @@ void Battle::fight() {
 }
 
 SpaceBattle::Builder& SpaceBattle::Builder::startTime(Time t) {
-    assert(t >= 0);
     t0 = t;
     return *this;
 }
 
 SpaceBattle::Builder& SpaceBattle::Builder::maxTime(Time t) {
-    assert(t >= 0);
     t1 = t;
     return *this;
 }
