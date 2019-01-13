@@ -5,37 +5,37 @@
 #include <memory>
 #include "helper.h"
 
-class ImperialStarShip : public virtual StarShip, public Attacking {
+class ImperialStarship : public virtual Starship, public Attacking {
 public:
-    ImperialStarShip(ShieldPoints shieldPoints, AttackPower attackPower);
+    ImperialStarship(ShieldPoints shieldPoints, AttackPower attackPower);
     
-    ~ImperialStarShip() override = default;
+    ~ImperialStarship() override = default;
 };
 
-class DeathStar : public ImperialStarShip {
+class DeathStar : public ImperialStarship {
 public:
     DeathStar(ShieldPoints shieldPoints, AttackPower attackPower);
     
     ~DeathStar() override = default;
 };
 
-class ImperialDestroyer : public ImperialStarShip {
+class ImperialDestroyer : public ImperialStarship {
 public:
     ImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower);
     
     ~ImperialDestroyer() override = default;
 };
 
-class TIEFighter : public ImperialStarShip {
+class TIEFighter : public ImperialStarship {
 public:
     TIEFighter(ShieldPoints shieldPoints, AttackPower attackPower);
     
     ~TIEFighter() override = default;
 };
 
-class Squadron : public ImperialStarShip {
+class Squadron : public ImperialStarship {
 private:
-    std::vector<std::shared_ptr<ImperialStarShip>> ships;
+    std::vector<std::shared_ptr<ImperialStarship>> ships;
     void takeDamage(AttackPower damage) override;
     
     void updateShieldAndAttackPower();
@@ -43,9 +43,9 @@ private:
     NumberOfShips howManyUndestroyedUnits() override;
 
 public:
-    Squadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships);
+    Squadron(const std::initializer_list<std::shared_ptr<ImperialStarship>> &ships);
     
-    Squadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships);
+    Squadron(const std::vector<std::shared_ptr<ImperialStarship>> &ships);
 };
 
 std::shared_ptr<DeathStar> createDeathStar(ShieldPoints shieldPoints, AttackPower attackPower);
@@ -54,9 +54,9 @@ std::shared_ptr<TIEFighter> createTIEFighter(ShieldPoints shieldPoints, AttackPo
 
 std::shared_ptr<ImperialDestroyer> createImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower);
 
-std::shared_ptr<Squadron> createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships);
+std::shared_ptr<Squadron> createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarship>> &ships);
 
-std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships);
+//std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships);
 
 
 #endif //STARWARS_2_IMPERIALFLEET_H

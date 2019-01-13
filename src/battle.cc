@@ -47,16 +47,16 @@ const std::shared_ptr<SpaceTime> &Battle::getSpaceTime() const {
     return spaceTime;
 }
 
-Battle::Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
-               const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
+Battle::Battle(const std::vector<std::shared_ptr<ImperialStarship>> &imperialShips,
+               const std::vector<std::shared_ptr<RebelStarship>> &rebelShips,
                Time t0, Time t1) :
         imperialShips(imperialShips),
         rebelShips(rebelShips),
         spaceTime(std::make_shared<DefaultSpaceTime>(t0, t1)) {}
 
 
-Battle::Battle(const std::vector<std::shared_ptr<ImperialStarShip>> &imperialShips,
-               const std::vector<std::shared_ptr<RebelStarShip>> &rebelShips,
+Battle::Battle(const std::vector<std::shared_ptr<ImperialStarship>> &imperialShips,
+               const std::vector<std::shared_ptr<RebelStarship>> &rebelShips,
                const std::shared_ptr<SpaceTime> sTime) :
         imperialShips(imperialShips),
         rebelShips(rebelShips),
@@ -88,12 +88,12 @@ SpaceBattle::Builder& SpaceBattle::Builder::spaceTimeKind(std::shared_ptr<SpaceT
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<ImperialStarShip> imperialShip) {
+SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<ImperialStarship> imperialShip) {
     imperialShips.push_back(imperialShip);
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<RebelStarShip> rebelShip) {
+SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<RebelStarship> rebelShip) {
     rebelShips.push_back(rebelShip);
     return *this;
 }

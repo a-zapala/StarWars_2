@@ -1,24 +1,24 @@
 #include <cassert>
 #include "rebelfleet.h"
 
-Speed RebelStarShip::getSpeed() const {
+Speed RebelStarship::getSpeed() const {
     return speed;
 }
 
-RebelStarShip::RebelStarShip(ShieldPoints shieldPoints, Speed speed) : StarShip(shieldPoints), speed(speed) {}
+RebelStarship::RebelStarship(ShieldPoints shieldPoints, Speed speed) : Starship(shieldPoints), speed(speed) {}
 
-Explorer::Explorer(ShieldPoints shieldPoints, Speed speed) : StarShip(shieldPoints),
-                                                             RebelStarShip(shieldPoints, speed) {
+Explorer::Explorer(ShieldPoints shieldPoints, Speed speed) : Starship(shieldPoints),
+                                                             RebelStarship(shieldPoints, speed) {
     assert(speed >= 299796 && speed <= 2997960);
 }
 
 StarCruiser::StarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower)
-        : StarShip(shieldPoints), RebelStarShip(shieldPoints, speed), Attacking(shieldPoints, attackPower) {
+        : Starship(shieldPoints), RebelStarship(shieldPoints, speed), Attacking(shieldPoints, attackPower) {
     assert(speed >= 99999 && speed <= 299795);
 }
 
 XWing::XWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower)
-        : StarShip(shieldPoints), RebelStarShip(shieldPoints, speed), Attacking(shieldPoints, attackPower) {
+        : Starship(shieldPoints), RebelStarship(shieldPoints, speed), Attacking(shieldPoints, attackPower) {
     
     assert(speed >= 299796 && speed <= 2997960);
 }

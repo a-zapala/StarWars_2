@@ -1,17 +1,17 @@
 #include <cmath>
 #include "helper.h"
 
-ShieldPoints StarShip::getShield() const {
+ShieldPoints Starship::getShield() const {
     return shieldPoints;
 }
 
-void StarShip::takeDamage(AttackPower damage) {
+void Starship::takeDamage(AttackPower damage) {
     shieldPoints = std::max(shieldPoints - damage, 0);
 }
 
-StarShip::StarShip(ShieldPoints shieldPoints) : shieldPoints(shieldPoints) {}
+Starship::Starship(ShieldPoints shieldPoints) : shieldPoints(shieldPoints) {}
 
-NumberOfShips StarShip::howManyUndestroyedUnits() {
+NumberOfShips Starship::howManyUndestroyedUnits() {
     if (shieldPoints > 0) {
         return 1;
     }
@@ -20,7 +20,7 @@ NumberOfShips StarShip::howManyUndestroyedUnits() {
     }
 }
 
-void StarShip::maybeAttack(std::shared_ptr<StarShip> ship) {
+void Starship::maybeAttack(std::shared_ptr<Starship> ship) {
     ship->takeDamage(0);
 }
 
@@ -28,11 +28,11 @@ AttackPower Attacking::getAttackPower() const {
     return attackPower;
 }
 
-void Attacking::maybeAttack(std::shared_ptr<StarShip> ship) {
+void Attacking::maybeAttack(std::shared_ptr<Starship> ship) {
     ship->takeDamage(attackPower);
 }
 
-Attacking::Attacking(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
+Attacking::Attacking(ShieldPoints shieldPoints, AttackPower attackPower) : Starship(shieldPoints),
                                                                            attackPower(attackPower) {}
 
 bool DefaultAttackTime::isItAttackTime(Time t) const {

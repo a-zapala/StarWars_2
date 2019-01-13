@@ -9,7 +9,7 @@ using Speed = int;
 using NumberOfShips = size_t;
 using Time = unsigned int;
 
-class StarShip {
+class Starship {
     friend class Battle;
 
 protected:
@@ -20,19 +20,19 @@ public:
     
     virtual void takeDamage(AttackPower damage);
     
-    StarShip(ShieldPoints shieldPoints);
+    Starship(ShieldPoints shieldPoints);
     
-    virtual ~StarShip() = default;
+    virtual ~Starship() = default;
 
     virtual NumberOfShips howManyUndestroyedUnits();
 
 private:
-    virtual void maybeAttack(std::shared_ptr<StarShip> ship);
+    virtual void maybeAttack(std::shared_ptr<Starship> ship);
 
 };
 
 
-class Attacking : public virtual StarShip {
+class Attacking : public virtual Starship {
     friend class Battle;
 
 protected:
@@ -46,7 +46,7 @@ public:
     ~Attacking() override = default;
 
 private:
-    void maybeAttack(std::shared_ptr<StarShip> ship) override;
+    void maybeAttack(std::shared_ptr<Starship> ship) override;
 };
 
 

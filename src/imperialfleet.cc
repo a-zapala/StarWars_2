@@ -1,28 +1,28 @@
 #include "imperialfleet.h"
 
-ImperialStarShip::ImperialStarShip(ShieldPoints shieldPoints, AttackPower attackPower)
-        : StarShip(shieldPoints), Attacking(shieldPoints, attackPower) {}
+ImperialStarship::ImperialStarship(ShieldPoints shieldPoints, AttackPower attackPower)
+        : Starship(shieldPoints), Attacking(shieldPoints, attackPower) {}
 
-DeathStar::DeathStar(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
-                                                                             ImperialStarShip(shieldPoints,
+DeathStar::DeathStar(ShieldPoints shieldPoints, AttackPower attackPower) : Starship(shieldPoints),
+                                                                             ImperialStarship(shieldPoints,
                                                                                               attackPower) {}
 
-ImperialDestroyer::ImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
-                                                                                           ImperialStarShip(
+ImperialDestroyer::ImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower) : Starship(shieldPoints),
+                                                                                           ImperialStarship(
                                                                                                    shieldPoints,
                                                                                                    attackPower) {}
 
-TIEFighter::TIEFighter(ShieldPoints shieldPoints, AttackPower attackPower) : StarShip(shieldPoints),
-                                                                             ImperialStarShip(shieldPoints,
+TIEFighter::TIEFighter(ShieldPoints shieldPoints, AttackPower attackPower) : Starship(shieldPoints),
+                                                                             ImperialStarship(shieldPoints,
                                                                                               attackPower) {}
 
-Squadron::Squadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships) : StarShip(0), ImperialStarShip(0, 0),
+Squadron::Squadron(const std::vector<std::shared_ptr<ImperialStarship>> &ships) : Starship(0), ImperialStarship(0, 0),
                                                                                   ships(ships) {
     updateShieldAndAttackPower();
 }
 
-Squadron::Squadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships) : StarShip(0),
-                                                                                            ImperialStarShip(0, 0),
+Squadron::Squadron(const std::initializer_list<std::shared_ptr<ImperialStarship>> &ships) : Starship(0),
+                                                                                            ImperialStarship(0, 0),
                                                                                             ships(ships) {
     updateShieldAndAttackPower();
 }
@@ -67,11 +67,11 @@ std::shared_ptr<ImperialDestroyer> createImperialDestroyer(ShieldPoints shieldPo
     return std::make_shared<ImperialDestroyer>(shieldPoints, attackPower);
 }
 
-std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships) {
-    return std::make_shared<Squadron>(ships);
-}
+//std::shared_ptr<Squadron> createSquadron(const std::vector<std::shared_ptr<ImperialStarShip>> &ships) {
+//    return std::make_shared<Squadron>(ships);
+//}
 
 std::shared_ptr<Squadron>
-createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarShip>> &ships) {
+createSquadron(const std::initializer_list<std::shared_ptr<ImperialStarship>> &ships) {
     return std::make_shared<Squadron>(ships);
 }

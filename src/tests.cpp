@@ -493,7 +493,7 @@ int main() {
             .ship(createExplorer(75, 400000))
             .ship(createStarCruiser(85, 100000, 41))
             .ship(createSquadron({createDeathStar(90, 30), createTIEFighter(16, 5)}))
-            .ship(createSquadron(std::vector<std::shared_ptr<ImperialStarShip>>({createTIEFighter(15, 5),
+            .ship(createSquadron(std::vector<std::shared_ptr<ImperialStarship>>({createTIEFighter(15, 5),
                                                                                  createImperialDestroyer(42, 10)})));
 
     auto battle9 = battleBuilder.build();

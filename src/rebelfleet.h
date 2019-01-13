@@ -4,30 +4,30 @@
 #include <memory>
 #include "helper.h"
 
-class RebelStarShip : public virtual StarShip {
+class RebelStarship : public virtual Starship {
 private:
     Speed speed;
 public:
     Speed getSpeed() const;
     
-    RebelStarShip(ShieldPoints shieldPoints, Speed speed);
+    RebelStarship(ShieldPoints shieldPoints, Speed speed);
 };
 
-class Explorer : public RebelStarShip {
+class Explorer : public RebelStarship {
 public:
     Explorer(ShieldPoints shieldPoints, Speed speed);
     
     ~Explorer() override = default;
 };
 
-class StarCruiser : public RebelStarShip, public Attacking {
+class StarCruiser : public RebelStarship, public Attacking {
 public:
     StarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower);
     
     ~StarCruiser() override = default;
 };
 
-class XWing : public RebelStarShip, public Attacking {
+class XWing : public RebelStarship, public Attacking {
 public:
     XWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower);
     
