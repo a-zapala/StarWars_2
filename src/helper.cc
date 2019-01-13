@@ -11,7 +11,7 @@ void Starship::takeDamage(AttackPower damage) {
 
 Starship::Starship(ShieldPoints shieldPoints) : shieldPoints(shieldPoints) {}
 
-NumberOfShips Starship::howManyUndestroyedUnits() {
+NumberOfShips Starship::howManyUndestroyedUnits() const {
     if (shieldPoints > 0) {
         return 1;
     }
@@ -36,24 +36,24 @@ Attacking::Attacking(ShieldPoints shieldPoints, AttackPower attackPower) : Stars
                                                                            attackPower(attackPower) {}
 
 bool DefaultAttackTime::isItAttackTime(Time t) const {
-    return (t % 2 == 0 ||  t % 3 == 0) && (t % 5 != 0);
+    return (t % 2 == 0 || t % 3 == 0) && (t % 5 != 0);
 }
 
 SpaceTime::SpaceTime(Time t0, Time t1) : t0(t0),
                                          t1(t1),
                                          currentTime(t0),
-                                         attackTime(std::make_shared<DefaultAttackTime>()){}
+                                         attackTime(std::make_shared<DefaultAttackTime>()) {}
 
 SpaceTime::SpaceTime(Time t0, Time t1, std::shared_ptr<AttackTime> attackTime) : t0(t0),
                                                                                  t1(t1),
                                                                                  currentTime(t0),
-                                                                                 attackTime(attackTime){}
+                                                                                 attackTime(attackTime) {}
 
 bool SpaceTime::isItAttackTime() {
     return attackTime->isItAttackTime(currentTime);
 }
 
-void SpaceTime::setAttackTime(std::shared_ptr<AttackTime> newAttackTime){
+void SpaceTime::setAttackTime(std::shared_ptr<AttackTime> newAttackTime) {
     attackTime = newAttackTime;
 }
 
@@ -77,7 +77,6 @@ void DefaultSpaceTime::tick(Time t) {
     currentTime += t;
     currentTime %= (t1 + 1);
 }
-
 
 // AttackTime for tests
 bool PastAttackTime::isItAttackTime(Time t) const {

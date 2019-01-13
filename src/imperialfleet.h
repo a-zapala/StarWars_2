@@ -36,11 +36,12 @@ public:
 class Squadron : public ImperialStarship {
 private:
     std::vector<std::shared_ptr<ImperialStarship>> ships;
+    
     void takeDamage(AttackPower damage) override;
     
     void updateShieldAndAttackPower();
-
-    NumberOfShips howManyUndestroyedUnits() override;
+    
+    NumberOfShips howManyUndestroyedUnits() const override;
 
 public:
     Squadron(const std::initializer_list<std::shared_ptr<ImperialStarship>> &ships);

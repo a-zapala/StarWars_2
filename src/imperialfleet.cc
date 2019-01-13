@@ -4,8 +4,8 @@ ImperialStarship::ImperialStarship(ShieldPoints shieldPoints, AttackPower attack
         : Starship(shieldPoints), Attacking(shieldPoints, attackPower) {}
 
 DeathStar::DeathStar(ShieldPoints shieldPoints, AttackPower attackPower) : Starship(shieldPoints),
-                                                                             ImperialStarship(shieldPoints,
-                                                                                              attackPower) {}
+                                                                           ImperialStarship(shieldPoints,
+                                                                                            attackPower) {}
 
 ImperialDestroyer::ImperialDestroyer(ShieldPoints shieldPoints, AttackPower attackPower) : Starship(shieldPoints),
                                                                                            ImperialStarship(
@@ -45,7 +45,7 @@ void Squadron::takeDamage(AttackPower damage) {
     updateShieldAndAttackPower();
 }
 
-NumberOfShips Squadron::howManyUndestroyedUnits() {
+NumberOfShips Squadron::howManyUndestroyedUnits() const {
     NumberOfShips numberOfShips = 0;
     
     for (auto &item : ships) {

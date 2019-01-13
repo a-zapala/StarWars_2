@@ -24,13 +24,13 @@ XWing::XWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower)
 }
 
 std::shared_ptr<Explorer> createExplorer(ShieldPoints shieldPoints, Speed speed) {
-    return std::make_shared<Explorer>(shieldPoints,speed);
+    return std::make_shared<Explorer>(shieldPoints, speed);
 }
 
 std::shared_ptr<XWing> createXWing(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower) {
-    return std::make_shared<XWing>(shieldPoints,speed,attackPower);
+    return std::make_shared<XWing>(shieldPoints, speed, attackPower);
 }
 
 std::shared_ptr<StarCruiser> createStarCruiser(ShieldPoints shieldPoints, Speed speed, AttackPower attackPower) {
-    return std::make_shared<StarCruiser>(shieldPoints,speed,attackPower);
+    return std::make_shared<StarCruiser>(shieldPoints, speed, attackPower);
 }

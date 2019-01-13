@@ -3,29 +3,28 @@
 
 NumberOfShips Battle::countRebelFleet() const {
     NumberOfShips numberOfShips = 0;
-
-    for (auto &ship: rebelShips) {
+    
+    for (const auto &ship: rebelShips) {
         numberOfShips += ship->howManyUndestroyedUnits();
     }
-
+    
     return numberOfShips;
 }
 
 NumberOfShips Battle::countImperialFleet() const {
     NumberOfShips numberOfShips = 0;
-
-    for (auto &ship: imperialShips) {
+    
+    for (const auto &ship: imperialShips) {
         numberOfShips += ship->howManyUndestroyedUnits();
     }
-
+    
     return numberOfShips;
 }
 
-
 void Battle::tick(Time timeStep) {
     NumberOfShips rebelFleet = countRebelFleet(), imperialFleet = countImperialFleet();
-
-    if(rebelFleet == 0 && imperialFleet == 0) {
+    
+    if (rebelFleet == 0 && imperialFleet == 0) {
         std::cout << "DRAW\n";
     }
     else if (imperialFleet == 0) {
@@ -39,7 +38,7 @@ void Battle::tick(Time timeStep) {
             fight();
         }
     }
-
+    
     spaceTime->tick(timeStep);
 }
 
@@ -53,7 +52,6 @@ Battle::Battle(const std::vector<std::shared_ptr<ImperialStarship>> &imperialShi
         imperialShips(imperialShips),
         rebelShips(rebelShips),
         spaceTime(std::make_shared<DefaultSpaceTime>(t0, t1)) {}
-
 
 Battle::Battle(const std::vector<std::shared_ptr<ImperialStarship>> &imperialShips,
                const std::vector<std::shared_ptr<RebelStarship>> &rebelShips,
@@ -73,27 +71,27 @@ void Battle::fight() {
     }
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::startTime(Time t) {
+SpaceBattle::Builder &SpaceBattle::Builder::startTime(Time t) {
     t0 = t;
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::maxTime(Time t) {
+SpaceBattle::Builder &SpaceBattle::Builder::maxTime(Time t) {
     t1 = t;
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::spaceTimeKind(std::shared_ptr<SpaceTime> sTime) {
+SpaceBattle::Builder &SpaceBattle::Builder::spaceTimeKind(std::shared_ptr<SpaceTime> sTime) {
     spaceTime = sTime;
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<ImperialStarship> imperialShip) {
+SpaceBattle::Builder &SpaceBattle::Builder::ship(std::shared_ptr<ImperialStarship> imperialShip) {
     imperialShips.push_back(imperialShip);
     return *this;
 }
 
-SpaceBattle::Builder& SpaceBattle::Builder::ship(std::shared_ptr<RebelStarship> rebelShip) {
+SpaceBattle::Builder &SpaceBattle::Builder::ship(std::shared_ptr<RebelStarship> rebelShip) {
     rebelShips.push_back(rebelShip);
     return *this;
 }
